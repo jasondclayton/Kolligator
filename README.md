@@ -8,6 +8,8 @@ Kolligator measure how far the shadow of the secondary mirror is from the
 centre of the disk. It tells you which collimation screw to turn, averages
 many frames to cancel out the seeing, and helps you see when you are done.
 
+![Kolligator measuring a defocused star](kolligator-screenshot.png)
+
 *Español más abajo.*
 
 ## About
