@@ -27,16 +27,21 @@ Get the latest version from the
 
 | File | For |
 |---|---|
-| `Kolligator-<version>-x86_64.AppImage` | Any 64-bit Linux distribution. Nothing to install. |
-| `kolligator_<version>_amd64.deb` | Ubuntu, Linux Mint, Debian and derivatives. |
+| `Kolligator-<version>-x86_64.AppImage` | Any 64-bit Linux PC (Intel/AMD). Nothing to install. |
+| `kolligator_<version>_amd64.deb` | Ubuntu, Linux Mint, Debian and derivatives on a PC. |
+| `Kolligator-<version>-aarch64.AppImage` | Raspberry Pi 4/5 and other 64-bit ARM boards. Nothing to install. |
+| `kolligator_<version>_arm64.deb` | Raspberry Pi OS (64-bit), StellarMate OS and other ARM Debian systems. |
 | `*.sha256` | Checksums to verify the downloads. |
 
 ### AppImage
 
 ```bash
-chmod +x Kolligator-*-x86_64.AppImage
-./Kolligator-*-x86_64.AppImage
+chmod +x Kolligator-*.AppImage
+./Kolligator-*.AppImage
 ```
+
+If it complains about FUSE (`libfuse.so.2`), install it with
+`sudo apt install libfuse2`, or run it with `--appimage-extract-and-run`.
 
 The first time it runs it adds itself to your applications menu, with its
 icon. Its settings file, `kolligator.conf`, is created next to the AppImage.
@@ -44,7 +49,7 @@ icon. Its settings file, `kolligator.conf`, is created next to the AppImage.
 ### .deb
 
 ```bash
-sudo apt install ./kolligator_*_amd64.deb
+sudo apt install ./kolligator_*_amd64.deb    # _arm64.deb on a Raspberry Pi
 ```
 
 Then start **Kolligator** from the applications menu (or `kolligator-gui`
@@ -75,8 +80,11 @@ It must print `OK`.
 
 ## Requirements
 
-- Linux on x86_64, with glibc 2.39 or newer (Ubuntu 24.04, Linux Mint 22,
+- PC (x86_64): Linux with glibc 2.39 or newer (Ubuntu 24.04, Linux Mint 22,
   Debian 13 or later).
+- Raspberry Pi / ARM (aarch64): 64-bit Linux with glibc 2.36 or newer
+  (Raspberry Pi OS Bookworm, StellarMate OS on Bookworm, or later). On
+  StellarMate, connect Kolligator to the local INDI server (`localhost`).
 - A camera that saves FITS files, or an INDI server.
 
 ## Support
@@ -90,7 +98,7 @@ Bugs and suggestions: open an [issue](../../issues).
 ## Licenses
 
 Kolligator is free to use, but it is not open source:
-© 2026 Kolligator, all rights reserved. It is provided "as is", without
+© 2026 JasonDClayton, all rights reserved. It is provided "as is", without
 warranty of any kind; you use it at your own risk. It includes open source components
 (Dear ImGui, GLFW, CFITSIO and, in the AppImage, the libraries they need),
 whose licenses are listed in `THIRD_PARTY_LICENSES.txt`, installed in
@@ -107,10 +115,10 @@ promedia varias tomas para eliminar el efecto del seeing.
 
 **Descarga** desde [Releases](../../releases/latest):
 
-- **AppImage** (cualquier Linux de 64 bits, sin instalar):
-  `chmod +x Kolligator-*-x86_64.AppImage` y ejecútalo.
-- **.deb** (Ubuntu, Linux Mint, Debian):
-  `sudo apt install ./kolligator_*_amd64.deb`.
+- **AppImage** (sin instalar): `x86_64` para PC, `aarch64` para Raspberry Pi.
+  `chmod +x Kolligator-*.AppImage` y ejecútalo.
+- **.deb**: `amd64` para PC (Ubuntu, Linux Mint, Debian), `arm64` para
+  Raspberry Pi OS y StellarMate. `sudo apt install ./kolligator_*.deb`.
 - **Comprobar la descarga:** `sha256sum -c <fichero>.sha256` debe responder `OK`.
 
 Creé Kolligator para mí, como **ayuda** a la colimación: estima si los
